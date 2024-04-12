@@ -1,0 +1,4 @@
+Item Name: Peashooter
+Quantity: 8
+Item Name: Peashooter
+Quantity: 10
