@@ -30,8 +30,23 @@
                 <li>Attack: High</li>
                 <li>Price: $10</li>
             </ul>
+            <form id="myForm" action="" method="POST">
+                <select name="QtySelected" id="QtySelected">
+                    <option value="selectValue">Select desired quantity.</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                    <option value=6>6</option>
+                    <option value=7>7</option>
+                    <option value=8>8</option>
+                    <option value=9>9</option>
+                    <option value=10>10</option>    
+                </select>
+            </form>
             <a href="index.html" class="back-button">Return</a>
-            <a href="" class="cart-button">Add to Cart</a>
+            <a href="#" onclick="getSelectedValue()" class="cart-button">Add to Cart</a> 
         </main>
         <footer>
             © Bloom & Doom, Co. Made by Salah Salame
@@ -39,3 +54,15 @@
     </div>
 </body>
 </html>
+
+<script>
+    function getSelectedValue() {
+        var action = "/Kernel-Pult/";
+        var selectBox = document.getElementById("QtySelected");
+        var selectedValue = selectBox.value;
+        action += selectedValue;
+        document.getElementById("myForm").action = action;
+        document.getElementById("myForm").submit();
+        alert("Item added to your cart.");
+    }
+</script>

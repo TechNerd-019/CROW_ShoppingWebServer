@@ -1,4 +1,6 @@
 Item Name: Peashooter
-Quantity: 8
-Item Name: Peashooter
-Quantity: 10
+Quantity: 6
+Item Name: Repeater
+Quantity: 5
+Item Name: Snowpea
+Quantity: 4

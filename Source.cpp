@@ -51,7 +51,7 @@ void sendFile(crow::response& res, std::string fileName, std::string contentType
 	res.end();
 }
 
-void addToCart(crow::response& res, std::string itemName, int quantity)
+void addToCart(std::string itemName, int quantity)
 {
 	std::ofstream myFile("Cart.txt", std::ios::app);
 	if (!myFile) { std::cout << "Cannot open the file." << std::endl; }
@@ -60,7 +60,7 @@ void addToCart(crow::response& res, std::string itemName, int quantity)
 	myFile << "Quantity: " << quantity << std::endl;
 
 	myFile.close();
-	res.write("The item has been added to your shopping cart!\n");
+
 }
 
 void sendHTML(crow::response& res, std::string fileName)
@@ -83,9 +83,31 @@ void sendStyle(crow::response& res, std::string fileName)
 	sendFile(res, "styles/" + fileName, "text/css");
 }
 
+void checkLogInCredentials(crow::response& res, std::string username, std::string password)
+{
+	std::string serverUsername = "TacoLover23";
+	std::string serverPassword = "DrZombossIsOutThere";
+
+	res.set_header("Content-Type", "text/html");
+
+	if (username == serverUsername && password == serverPassword)
+	{
+		sendHTML(res, "login-success.html");
+		res.code = 202;
+		res.end();
+	}
+	else
+	{
+		sendHTML(res, "login-failure.html");
+		res.code = 401;
+		res.end();
+	}
+}
+
 int main(void)
 {
 	fileCheck();
+
 
 	crow::SimpleApp lawnDefender;
 
@@ -127,14 +149,22 @@ int main(void)
 	CROW_ROUTE(lawnDefender, "/<string>/<int>").methods(crow::HTTPMethod::Post)
 		([](const crow::request& req, crow::response& res, std::string itemName, int quantity)
 			{
-				addToCart(res, itemName, quantity);
+				addToCart(itemName, quantity);
 			}
 		);
+							// Used <string> to avoid hard-coding to the route.
+	CROW_ROUTE(lawnDefender, "/login").methods(crow::HTTPMethod::Post)
+		([](const crow::request& req, crow::response& res)
+			{
+				std::string username = req.url_params.get("username");
+				std::string password = req.url_params.get("password");
 
+				checkLogInCredentials(res, username, password);
+
+			}
+		);
 
 	lawnDefender.port(23500).multithreaded().run();
 
 	return 0;
-	
 }
-

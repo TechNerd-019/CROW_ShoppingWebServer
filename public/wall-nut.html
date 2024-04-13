@@ -34,7 +34,7 @@
                 <li>Price: $5</li>
             </ul>
             <a href="index.html" class="back-button">Return</a>
-            <a href="" class="cart-button">Add to Cart</a>
+            <a href="#" onclick="getSelectedValue()" class="cart-button">Add to Cart</a>
         </main>
         <footer>
             © Bloom & Doom, Co. Made by Salah Salame
@@ -42,3 +42,15 @@
     </div>
 </body>
 </html>
+
+<script>
+    function getSelectedValue() {
+        var action = "/Wall-Nut/";
+        var selectBox = document.getElementById("QtySelected");
+        var selectedValue = selectBox.value;
+        action += selectedValue;
+        document.getElementById("myForm").action = action;
+        document.getElementById("myForm").submit();
+        alert("Item added to your cart.");
+    }
+</script>
