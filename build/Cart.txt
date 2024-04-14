@@ -1,4 +1,0 @@
-Item Name: Repeater
-Quantity: 7
-Item Name: Sunflower
-Quantity: 10

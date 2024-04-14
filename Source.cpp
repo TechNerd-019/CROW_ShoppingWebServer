@@ -15,9 +15,17 @@
 
 #include "crow_all.h"
 
+/*
+* This function runs when the webserver is executed.
+* It is in charge of processing the cart document where
+* data will be written to and read from.
+* 
+* If a file does not exist, it shall be created by this function
+* and stored on the /build directory.
+*/
 void fileCheck()
 {
-	std::ifstream myFile("Cart.txt.");
+	std::ifstream myFile("Cart.txt");
 	if (!myFile)
 	{
 		std::cout << "Cannot open the file, or does not exist. Creating new file." << std::endl;
@@ -50,7 +58,13 @@ void sendFile(crow::response& res, std::string fileName, std::string contentType
 
 	res.end();
 }
-
+/*
+* This function is executed by the crow route handling
+* the POST method. It will parse the parameters from
+* the URL (which is provided by the "action" variable from
+* the JavaScript function) and write its contents to a file
+* where it is properly formatted.
+*/
 void addToCart(std::string itemName, int quantity)
 {
 	std::ofstream myFile("Cart.txt", std::ios::app);
@@ -62,7 +76,10 @@ void addToCart(std::string itemName, int quantity)
 	myFile.close();
 
 }
-
+/*
+* All these functions are required for processing various
+* data types.
+*/
 void sendHTML(crow::response& res, std::string fileName)
 {
 	sendFile(res, fileName, "text/html");
@@ -83,6 +100,11 @@ void sendStyle(crow::response& res, std::string fileName)
 	sendFile(res, "styles/" + fileName, "text/css");
 }
 
+/*
+* This function takes two arguments, in addition to the crow response.
+* It compares the values of what is entered in the log in form (from the
+* JavaScript code) and returns the appropriate page where necessary.
+*/
 void checkLogInCredentials(crow::response& res, std::string username, std::string password)
 {
 	std::string serverUsername = "TacoLover23";
@@ -92,13 +114,13 @@ void checkLogInCredentials(crow::response& res, std::string username, std::strin
 
 	if (username == serverUsername && password == serverPassword)
 	{
-		sendHTML(res, "login-success.html");
+		sendHTML(res, "checkout-success.html");
 		res.code = 202;
 		res.end();
 	}
 	else
 	{
-		sendHTML(res, "login-failure.html");
+		sendHTML(res, "checkout-failure.html");
 		res.code = 401;
 		res.end();
 	}
@@ -153,7 +175,7 @@ int main(void)
 			}
 		);
 							
-	CROW_ROUTE(lawnDefender, "/login").methods(crow::HTTPMethod::Post)
+	CROW_ROUTE(lawnDefender, "/checkout").methods(crow::HTTPMethod::Post)
 		([](const crow::request& req, crow::response& res)
 			{
 				std::string username = req.url_params.get("username");
@@ -173,7 +195,7 @@ int main(void)
 					std::ostringstream contents;
 					contents << in.rdbuf();
 					in.close();
-					res.set_header("Content-Type", "text/html");
+					res.set_header("Content-Type", "text/plain"); /*Needed for proper text formatting. */
 					res.write(contents.str());
 				}
 				else
