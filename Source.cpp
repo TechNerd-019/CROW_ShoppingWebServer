@@ -152,7 +152,7 @@ int main(void)
 				addToCart(itemName, quantity);
 			}
 		);
-							// Used <string> to avoid hard-coding to the route.
+							
 	CROW_ROUTE(lawnDefender, "/login").methods(crow::HTTPMethod::Post)
 		([](const crow::request& req, crow::response& res)
 			{
@@ -161,6 +161,28 @@ int main(void)
 
 				checkLogInCredentials(res, username, password);
 
+			}
+		);
+
+	CROW_ROUTE(lawnDefender, "/checkout/showCart")
+		([](const crow::request& req, crow::response& res)
+			{
+				std::ifstream in("Cart.txt");
+				if (in)
+				{
+					std::ostringstream contents;
+					contents << in.rdbuf();
+					in.close();
+					res.set_header("Content-Type", "text/html");
+					res.write(contents.str());
+				}
+				else
+				{
+					res.code = 404;
+					res.write("Not Found");
+				}
+
+				res.end();
 			}
 		);
 
