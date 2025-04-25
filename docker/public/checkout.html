@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="images/popcap.jpg">
+    <title>Checkout - Log In</title>
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Log In</h2>
+        <form id="login_form" action="" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+        </form>
+        <a href="index.html" class="return-button">Return</a>
+        <a href="#" onclick="submitLogin()" class="submit-button">Submit</a>
+    </div>
+    <footer>
+        &copy; Bloom & Doom, Co. Made by Salah Salame
+    </footer>
+</body>
+</html>
+
+<script>
+    function submitLogin()
+    {
+        var action = "/checkout?username=";
+        var param = document.getElementById("username").value;
+        action += param;
+        action += "&password=";
+        param = document.getElementById("password").value;
+        action += param;
+        document.getElementById("login_form").action = action;
+        document.getElementById("login_form").submit();
+
+    }
+</script>

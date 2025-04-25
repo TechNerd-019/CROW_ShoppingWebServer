@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ebf5ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.show-cart-button, .index-back-button, .login-back-button {
+    margin-top: 20px;
+    padding: 5px 50px;
+    background-color: #0acc2a;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.index-back-button:hover {
+    background-color: #23ad11;
+}
+
+.login-back-button:hover {
+    background-color: #23ad11;
+}
+
+.show-cart-button:hover {
+    background-color: #125a08;
+}
+
+footer {
+    text-align: center;
+    background-color: #16700d;
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

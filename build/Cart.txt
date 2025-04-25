@@ -1,0 +1,6 @@
+Item Name: Peashooter
+Quantity: 6
+Item Name: Melon-Pult
+Quantity: 7
+Item Name: Kernel-Pult
+Quantity: 10

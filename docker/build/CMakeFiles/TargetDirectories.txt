@@ -1,0 +1,3 @@
+/SharedDocker/build/CMakeFiles/Salah-CSCN72050-Lab10.dir
+/SharedDocker/build/CMakeFiles/edit_cache.dir
+/SharedDocker/build/CMakeFiles/rebuild_cache.dir

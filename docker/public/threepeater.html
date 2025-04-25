@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="images/pvz_logo.jpg">
+    <title>Threepeater</title>
+    <link rel="stylesheet" href="styles/products.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Threepeater</h1>
+        </header>
+        <main>
+            <img src="images/threepeater.jpg" alt="Threepeater">
+            <p><b>Get ready to soil your plants!</b></p>
+            <p>Threepeaters provide triple defence against </p>
+            <p>
+                The threepeater shoots three peas at the time, dealing thrice the damage! 
+                It was created by Crazy Dave as part of the PvZ basic starter pack. Purchase
+                and be eligible to win a 20% discount on select plants, including the 
+                Kernel-Pult and Snowpea!
+                
+            </p>
+            <p>
+                Made in Bloom & Doom Co., by Crazy Dave. © - George Fan - PopCap Games - 2009.
+            </p>
+            <ul>
+                <li>Recharge time: Fast</li>
+                <li>Attack: High</li>
+                <li>Price: $32.50</li>
+            </ul>
+            <form id="myForm" action="" method="POST">
+                <select name="QtySelected" id="QtySelected">
+                    <option value="selectValue">Select desired quantity.</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                    <option value=6>6</option>
+                    <option value=7>7</option>
+                    <option value=8>8</option>
+                    <option value=9>9</option>
+                    <option value=10>10</option>    
+                </select>
+            </form>
+            <a href="index.html" class="back-button">Return</a>
+            <a href="#" onclick="getSelectedValue()" class="cart-button">Add to Cart</a>
+        </main>
+        <footer>
+            © Bloom & Doom, Co. Made by Salah Salame
+        </footer>
+    </div>
+</body>
+</html>
+
+<script>
+    function getSelectedValue() {
+        var action = "/Threepeater/";
+        var selectBox = document.getElementById("QtySelected");
+        var selectedValue = selectBox.value;
+        action += selectedValue;
+        document.getElementById("myForm").action = action;
+        document.getElementById("myForm").submit();
+        alert("Item added to your cart.");
+    }
+</script>
